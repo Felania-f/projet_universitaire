@@ -11,18 +11,24 @@ while (!levelOne.functionExists()) {
     levelOne.setSelectedMethod(selectedFunction.length ? selectedFunction : 'add')
 }
 
+const noOfArgs = levelOne.getNoOfArgs()
+
 levelOne.setInputParameters({
     a: Number(readlineSync.question('input 1: '))
 })
 
-const input2: string | undefined = (readlineSync.question('input 2(leave empty if not needed): '))
-input2 && levelOne.setInputParameters({
-    b: parseInt(input2)
-})
+if (noOfArgs > 1) {
+    const input2: string | undefined = (readlineSync.question('input 2: '))
+    input2 && levelOne.setInputParameters({
+        b: parseInt(input2)
+    })
+}
 
-const input3: string | undefined = (readlineSync.question('input 3(leave empty if not needed): '))
-input3 && levelOne.setInputParameters({
-    c: parseInt(input3)
-})
+if (noOfArgs > 2) {
+    const input3: string | undefined = (readlineSync.question('input 3: '))
+    input3 && levelOne.setInputParameters({
+        c: parseInt(input3)
+    })
+}
 
 console.log(levelOne.runSelected())
