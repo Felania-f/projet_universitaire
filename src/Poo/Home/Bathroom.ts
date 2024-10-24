@@ -1,6 +1,6 @@
 import { Room } from "./Room";
 
-export class livingRoom extends Room {
+export class Bathroom extends Room {
   private hasWc: boolean;
 
   constructor(floor: number, area: number, hasWc: boolean) {
@@ -8,7 +8,8 @@ export class livingRoom extends Room {
     this.hasWc = hasWc;
   }
 
-  public display(): string {
-    return `${this.hasWc}`
+  // getter pour savoir si la salle de bain a des WC
+  public getHasWc(): boolean {
+    return this.hasWc;
   }
 }
