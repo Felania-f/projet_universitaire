@@ -1,7 +1,7 @@
 import * as readlineSync from 'readline-sync';
 
-// Génère un nombre aléatoire entre 1 et 5
-const nombreDeviner: number = Math.floor(Math.random() * 5) + 1;
+// Génère un nombre aléatoire entre 1 et 1000
+const nombreDeviner: number = Math.floor(Math.random() * 1000) + 1;
 let guess: number | undefined = undefined;
 let attempts: number = 0;
 
