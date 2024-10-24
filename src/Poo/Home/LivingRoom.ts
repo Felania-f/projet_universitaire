@@ -11,8 +11,4 @@ export class LivingRoom extends Room {
   public gethasTv(): number {
     return this.hasTv;
   }
-
-  public display(): string {
-    return `Has TV: ${this.hasTv > 0}`;
-  }
 }

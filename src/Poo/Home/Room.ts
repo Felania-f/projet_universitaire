@@ -15,8 +15,4 @@ export class Room {
   public getArea(): number {
     return this.area;
   }
-
-  public display(): string {
-    return `${this.floor}:\n affected to:${this.area}`
-  }
 }

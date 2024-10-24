@@ -8,10 +8,6 @@ export class livingRoom extends Room {
     this.hasWc = hasWc;
   }
 
-  // public getNbWc(): boolean {
-  //   return this.NbWc;
-  // }
-
   public display(): string {
     return `${this.hasWc}`
   }
