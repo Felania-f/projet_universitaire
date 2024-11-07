@@ -71,3 +71,6 @@ export class Home {
     return tvCount;
   }
 }
+
+// getNbBeds
+// getArea
