@@ -1,0 +1,1 @@
+{"version":3,"file":"LivingRoom.js","sourceRoot":"","sources":["../../../src/Poo/Home/LivingRoom.ts"],"names":[],"mappings":";;;AAAA,iCAA8B;AAE9B,MAAa,UAAW,SAAQ,WAAI;IAGlC,YAAY,KAAa,EAAE,IAAY,EAAE,KAAa;QACpD,KAAK,CAAC,KAAK,EAAE,IAAI,CAAC,CAAC;QACnB,IAAI,CAAC,KAAK,GAAG,KAAK,CAAC;IACrB,CAAC;IAEM,QAAQ;QACb,OAAO,IAAI,CAAC,KAAK,CAAC;IACpB,CAAC;CACF;AAXD,gCAWC"}
