@@ -64,36 +64,53 @@ export class Game {
 
     //déplacer rocher et gère les interactions avec les trous
     private pushRock(rock: Rock, dx: number, dy: number): void {
-        const rockNewX = rock.x + dx;
-        const rockNewY = rock.y + dy;
+        const rocksToMove: Rock[] = [];
+        let currentX = rock.x;
+        let currentY = rock.y;
 
-        //limite du déplacements du rocher
-        if (rockNewX < 0 || rockNewX >= this.width || rockNewY < 0 || rockNewY >= this.height) {
+        //identifie tous les rochers dans la cascade
+        while (true) {
+            const nextRock = this.getRockAt(currentX + dx, currentY + dy);
+            if (nextRock) {
+                rocksToMove.push(nextRock);
+                currentX += dx;
+                currentY += dy;
+            } else {
+                break;
+            }
+        }
+
+        const finalX = currentX + dx;
+        const finalY = currentY + dy;
+
+        //limite du déplacements du rocher, voir si la position finale est libre ou contient un trou
+        const holeForLastRock = this.holes.find(hole => hole.x === finalX && hole.y === finalY);
+        if (
+            finalX < 0 || finalX >= this.width || finalY < 0 || finalY >= this.height ||
+            (this.isOccupied(finalX, finalY) && !holeForLastRock)
+        ) {
             return;
         }
 
-        const holeForRock = this.holes.find(hole => hole.x === rockNewX && hole.y === rockNewY);
-        if (!this.player.canMove(dx, dy, this.width, this.height)) return;
-
-        //pousse le rocher si la case suivante est libre ou contient un trou
-        if (!this.isOccupied(rockNewX, rockNewY) || (holeForRock && !holeForRock.isFilled)) {
-            rock.move(dx, dy);
-
-            //boucher le trou s'il n'est pas boucher
-            if (holeForRock && !holeForRock.isFilled) {
-                //bloquer le roche
-                // rock.isStuck = true;
-                this.rocks = this.rocks.filter(r => r.id !== rock.id); // Utilise l'ID pour supprimer la roche
-                //marque le trou comme bouché
-                holeForRock.fill();
-                this.score++;
-                this.display.refreshScore(this.score);
-            }
-
-            //déplace le joueur après avoir poussé le rocher
-            this.player.move(dx, dy);
+        //Déplacé tous les roches dans l'ordre inverse
+        for (let i = rocksToMove.length - 1; i >= 0; i--) {
+            rocksToMove[i].move(dx, dy);
         }
+        rock.move(dx, dy);
+
+        // Gère le trou si le dernier rocher tombe dedans
+        if (holeForLastRock && !holeForLastRock.isFilled) {
+            holeForLastRock.fill();
+            //supprime le rocher tombé dans le trou
+            this.rocks = this.rocks.filter(r => r !== rock);
+            this.score++;
+            this.display.refreshScore(this.score);
+        }
+
+        // Déplace le joueur après avoir poussé les rochers
+        this.player.move(dx, dy);
     }
+
 
 
     private checkWinCondition(): void {
