@@ -1,18 +1,30 @@
 import Drawer from "./Drawer.js";
+import { Player } from "./Player.js";
 export class Display {
     constructor(width, height, scale = 10) {
         this.drawer = new Drawer(width, height, scale);
     }
+    refreshScore(score) {
+        const scoreElement = document.getElementById("score");
+        if (scoreElement) {
+            scoreElement.innerHTML = `Score: ${score}`;
+        }
+    }
     refreshLevel(level) {
-        let levelElement = document.getElementById("score");
-        if (levelElement != null) {
-            levelElement.innerHTML = `Niveau: ${level}`;
+        const levelElement = document.getElementById("level");
+        if (levelElement) {
+            levelElement.innerHTML = `Level: ${level}`;
         }
     }
     draw(game) {
         this.drawer.clear();
         game.getEntities().forEach(entity => {
-            this.drawer.drawRectangle(entity.x, entity.y, entity.color);
+            if (entity instanceof Player) {
+                this.drawer.drawCircle(entity.x, entity.y, entity.color);
+            }
+            else {
+                this.drawer.drawRectangle(entity.x, entity.y, entity.color);
+            }
         });
     }
 }

@@ -14,4 +14,10 @@ export default class Drawer {
         this.ctx.fillStyle = color;
         this.ctx.fillRect(x * this.scale, y * this.scale, this.scale, this.scale);
     }
+    drawCircle(x, y, color) {
+        this.ctx.fillStyle = color;
+        this.ctx.beginPath();
+        this.ctx.arc(x * this.scale + this.scale / 2, y * this.scale + this.scale / 2, this.scale / 2, 0, Math.PI * 2);
+        this.ctx.fill();
+    }
 }

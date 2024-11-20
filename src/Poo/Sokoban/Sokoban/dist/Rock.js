@@ -1,14 +1,16 @@
 export class Rock {
     constructor(x, y) {
+        this.id = Rock.idCounter++;
         this.x = x;
         this.y = y;
         this.color = "gray";
-        this.isStuck = false; // Par défaut, le rocher n'est pas bloqué
+        this.isStuck = false;
     }
     move(dx, dy) {
         if (this.isStuck)
-            return; // Si le rocher est bloqué, il ne bouge pas
+            return;
         this.x += dx;
         this.y += dy;
     }
 }
+Rock.idCounter = 0;

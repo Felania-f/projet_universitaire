@@ -1,4 +1,6 @@
 export class Rock {
+  private static idCounter = 0;
+  public id: number;
   x: number;
   y: number;
   color: string;
@@ -6,6 +8,7 @@ export class Rock {
   setColor: any;
 
   constructor(x: number, y: number) {
+    this.id = Rock.idCounter++;
     this.x = x;
     this.y = y;
     this.color = "gray";
