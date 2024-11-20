@@ -9,7 +9,6 @@ export class Game {
         this.display = new Display(width, height, scale);
         this.player = new Player(5, 5);
         this.level = 1;
-        this.score = 0;
         this.rocks = [new Rock(8, 8)];
         this.holes = [new Hole(10, 10)];
     }
@@ -65,8 +64,6 @@ export class Game {
                 this.rocks = this.rocks.filter(r => r.id !== rock.id); // Utilise l'ID pour supprimer la roche
                 //marque le trou comme bouché
                 holeForRock.fill();
-                this.score++;
-                this.display.refreshScore(this.score);
             }
             //déplace le joueur après avoir poussé le rocher
             this.player.move(dx, dy);

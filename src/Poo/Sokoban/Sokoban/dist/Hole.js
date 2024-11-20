@@ -1,3 +1,4 @@
+//trou
 export class Hole {
     constructor(x, y) {
         this.x = x;
