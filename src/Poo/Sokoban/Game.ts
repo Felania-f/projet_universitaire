@@ -15,7 +15,7 @@ export class Game {
     private display: Display;
     private player: Player;
     private rocks: Rock[];
-    private holes: Hole[];
+    private holes: Hole[]; 
     private level: number;
     private score: number;
     private moveHistory: MoveHistory[] = [];
